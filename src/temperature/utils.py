@@ -5,11 +5,13 @@
 
     Utility functions and classes.
 """
+from typing import Tuple
+
+import ipopt
 import numpy as np
 import pandas as pd
 import xspline
-import ipopt
-from typing import Tuple
+
 import process
 
 
@@ -123,10 +125,10 @@ class TrendResult:
         for mt in self.mean_temp:
             gamma = np.maximum(1e-6, self.gamma_at_mean_temp(mt))
             beta = self.beta_at_mean_temp(mt)
-            # re_samples.append(np.random.randn(num_samples, gamma.size)*
-            #                   np.sqrt(gamma))
-            re_samples.append(beta + 
-                np.random.randn(num_samples, gamma.size)*np.sqrt(gamma))
+            re_samples.append(np.random.randn(num_samples, gamma.size)*
+                              np.sqrt(gamma))
+            # re_samples.append(beta + 
+            #     np.random.randn(num_samples, gamma.size)*np.sqrt(gamma))
 
         self.re_samples = np.dstack(re_samples)
 

@@ -5,11 +5,12 @@
 
     Functions for visiualization of data.
 """
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
-import utils
+
 import process
+import utils
 
 
 def plot_surface(agg_tdata, surface_result, num_levels=10):
@@ -156,9 +157,9 @@ def plot_slice_uncertainty(mean_temp, tdata, surface_result, trend_result,
     dt = np.linspace(min_daily_temp, max_daily_temp, num_dt)
     curve = surface_result.surface_func(np.repeat(mean_temp, num_dt), dt)
 
-    trend_beta = trend_result.beta_at_mean_temp(mean_temp)
-    tmrl = surface_result.tmrl[surface_result.mean_temp == mean_temp]
-    curve += np.maximum(dt - tmrl, 0.0)*trend_beta[0,1] + np.minimum(dt - tmrl, 0.0)*trend_beta[0,0]
+    # trend_beta = trend_result.beta_at_mean_temp(mean_temp)
+    # tmrl = surface_result.tmrl[surface_result.mean_temp == mean_temp]
+    # curve += np.maximum(dt - tmrl, 0.0)*trend_beta[0,1] + np.minimum(dt - tmrl, 0.0)*trend_beta[0,0]
 
     handle.plot(dt, curve)
 
